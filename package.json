@@ -1,0 +1,374 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { ShoppingCart, ShieldCheck, Clock, Headphones, Gamepad2, Swords, CreditCard, ArrowRight, Star, Award, Lock, Truck, DollarSign, ExternalLink, Copy } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+
+// ---- CONFIG ----
+const SHOP_URL = "https://sevservices.mysellauth.com/"; // Replace with specific product links later
+const DISCORD_INVITE = "https://discord.gg/8d3me5n852"; // Replace with your live invite
+
+const products = [
+  {
+    id: "gta-premium",
+    title: "GTA V Premium Modded Account",
+    subtitle: "Max cash • High rank • Unlocks",
+    price: "$45",
+    tag: "Best Seller",
+    icon: Gamepad2,
+    href: SHOP_URL,
+    features: [
+      "$500M+ in-game cash",
+      "Rank 120+",
+      "Most unlocks included",
+      "PC / Steam compatible",
+    ],
+  },
+  {
+    id: "gta-recovery",
+    title: "GTA V Account Recovery",
+    subtitle: "Boost your existing account",
+    price: "$25",
+    tag: "Fast Delivery",
+    icon: Swords,
+    href: SHOP_URL,
+    features: [
+      "Custom cash & levels",
+      "Unlocks on request",
+      "Low risk methods",
+      "Secure processing",
+    ],
+  },
+  {
+    id: "r6-recoil",
+    title: "R6 Recoil Script",
+    subtitle: "Undetected anti-recoil macro",
+    price: "$15",
+    tag: "New",
+    icon: ShieldCheck,
+    href: SHOP_URL,
+    features: [
+      "Plug & play profiles",
+      "Low CPU overhead",
+      "Free minor updates",
+      "Video setup guide",
+    ],
+  },
+];
+
+const faqs = [
+  {
+    q: "How fast is delivery?",
+    a: "Digital items usually deliver within 5–30 minutes after purchase. Custom recoveries may take up to 24 hours depending on queue.",
+  },
+  {
+    q: "What platforms are supported?",
+    a: "GTA services are for PC (Steam/Rockstar). R6 recoil script supports Windows. Console support is not available.",
+  },
+  {
+    q: "Is this safe?",
+    a: "We use low-risk methods, private tooling, and clear instructions to minimize risk. As with any modifications, use at your own discretion.",
+  },
+  {
+    q: "What is your refund policy?",
+    a: "If we cannot deliver your order, you will be refunded. Digital goods delivered as described are non-refundable.",
+  },
+];
+
+function Section({ id, children }: React.PropsWithChildren<{ id?: string }>) {
+  return (
+    <section id={id} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">{children}</section>
+  );
+}
+
+function Header() {
+  return (
+    <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-500" />
+          <span className="font-semibold">SevServices</span>
+        </div>
+        <nav className="hidden md:flex items-center gap-6 text-sm">
+          <a href="#products" className="hover:text-purple-600">Products</a>
+          <a href="#benefits" className="hover:text-purple-600">Why Us</a>
+          <a href="#faq" className="hover:text-purple-600">FAQ</a>
+          <a href="#contact" className="hover:text-purple-600">Contact</a>
+        </nav>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" asChild>
+            <a href={DISCORD_INVITE} target="_blank" rel="noreferrer">
+              Discord
+            </a>
+          </Button>
+          <Button asChild className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+            <a href={SHOP_URL} target="_blank" rel="noreferrer" className="flex items-center gap-2">
+              <ShoppingCart className="w-4 h-4" /> Shop
+            </a>
+          </Button>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <Section>
+      <div className="grid md:grid-cols-2 gap-10 items-center">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <Badge className="mb-4 w-fit">Trusted digital services</Badge>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+            GTA Accounts & Services, plus R6 Recoil Scripts — fast, safe, affordable.
+          </h1>
+          <p className="mt-4 text-muted-foreground">
+            Level up your gameplay with premium modded accounts, secure recoveries, and a clean anti-recoil script. Delivered quickly with friendly support.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button asChild className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+              <a href="#products" className="flex items-center gap-2">
+                Browse Products <ArrowRight className="w-4 h-4" />
+              </a>
+            </Button>
+            <Button variant="outline" asChild>
+              <a href={SHOP_URL} target="_blank" rel="noreferrer" className="flex items-center gap-2">
+                Go to Checkout <ExternalLink className="w-4 h-4" />
+              </a>
+            </Button>
+          </div>
+          <div className="mt-6 flex gap-6 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2"><Clock className="w-4 h-4" /> 5–30m typical delivery</div>
+            <div className="flex items-center gap-2"><Headphones className="w-4 h-4" /> Live support</div>
+            <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4" /> Private methods</div>
+          </div>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.1 }}>
+          <div className="rounded-2xl border bg-gradient-to-br from-slate-50 to-white p-6 shadow-sm">
+            <div className="grid grid-cols-3 gap-4">
+              {["Cash Boosts", "Rank Up", "Unlock Packs", "Security", "Fast", "Support"].map((t, i) => (
+                <Card key={i} className="rounded-xl">
+                  <CardContent className="p-4 text-center text-sm font-medium">{t}</CardContent>
+                </Card>
+              ))}
+            </div>
+            <div className="mt-4 text-xs text-muted-foreground text-center">Screens are illustrative. Gameplay items are in-game only.</div>
+          </div>
+        </motion.div>
+      </div>
+    </Section>
+  );
+}
+
+function ProductCard({ p }: { p: (typeof products)[number] }) {
+  const Icon = p.icon;
+  return (
+    <Card className="rounded-2xl hover:shadow-md transition">
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Icon className="w-5 h-5" />
+            <CardTitle className="text-lg">{p.title}</CardTitle>
+          </div>
+          {p.tag && <Badge className="bg-purple-600">{p.tag}</Badge>}
+        </div>
+        <div className="text-sm text-muted-foreground">{p.subtitle}</div>
+      </CardHeader>
+      <CardContent>
+        <div className="flex items-baseline gap-2">
+          <span className="text-3xl font-bold">{p.price}</span>
+          <span className="text-sm text-muted-foreground">one-time</span>
+        </div>
+        <ul className="mt-4 space-y-2 text-sm">
+          {p.features.map((f, i) => (
+            <li key={i} className="flex gap-2"><Star className="w-4 h-4 shrink-0" /> {f}</li>
+          ))}
+        </ul>
+        <div className="mt-6 flex gap-2">
+          <Button asChild className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+            <a href={p.href} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2">
+              <CreditCard className="w-4 h-4" /> Buy Now
+            </a>
+          </Button>
+          <Button asChild variant="outline" className="w-28">
+            <a href="#faq">Details</a>
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function Products() {
+  return (
+    <Section id="products">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-bold">Products</h2>
+        <Badge variant="secondary">Instant digital delivery</Badge>
+      </div>
+      <div className="grid md:grid-cols-3 gap-6">
+        {products.map((p) => (
+          <ProductCard key={p.id} p={p} />
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Benefits() {
+  const items = [
+    { icon: ShieldCheck, title: "Private Methods", desc: "Low-risk delivery techniques with clear instructions." },
+    { icon: Clock, title: "Fast Delivery", desc: "Most orders fulfilled in minutes; custom work under 24h." },
+    { icon: Headphones, title: "Friendly Support", desc: "Tickets handled in Discord with updates and proofs." },
+    { icon: Lock, title: "Secure Checkout", desc: "Payments handled by Sell.App with buyer protection." },
+  ];
+  return (
+    <Section id="benefits">
+      <h2 className="text-2xl font-bold mb-6">Why choose SevServices?</h2>
+      <div className="grid md:grid-cols-4 gap-6">
+        {items.map(({ icon: I, title, desc }, i) => (
+          <Card key={i} className="rounded-2xl">
+            <CardContent className="p-6">
+              <I className="w-6 h-6 mb-3" />
+              <div className="font-semibold">{title}</div>
+              <div className="text-sm text-muted-foreground mt-1">{desc}</div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Testimonials() {
+  const quotes = [
+    { name: "Jax", text: "Order delivered in 10 minutes. Everything matched the listing.", badge: "Verified" },
+    { name: "Mina", text: "Support helped me set up the script in 5 minutes. Super easy.", badge: "R6 Buyer" },
+    { name: "Cole", text: "Rank & cash exactly as promised, would buy again.", badge: "GTA Recovery" },
+  ];
+  return (
+    <Section>
+      <h2 className="text-2xl font-bold mb-6">What buyers say</h2>
+      <div className="grid md:grid-cols-3 gap-6">
+        {quotes.map((q, i) => (
+          <Card key={i} className="rounded-2xl">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-2 mb-2">
+                <Award className="w-4 h-4" />
+                <Badge variant="secondary">{q.badge}</Badge>
+              </div>
+              <p className="text-sm">“{q.text}”</p>
+              <div className="mt-3 text-sm font-medium">— {q.name}</div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function FAQ() {
+  return (
+    <Section id="faq">
+      <h2 className="text-2xl font-bold mb-6">FAQ</h2>
+      <Accordion type="single" collapsible className="w-full">
+        {faqs.map((f, i) => (
+          <AccordionItem key={i} value={`item-${i}`}>
+            <AccordionTrigger className="text-left">{f.q}</AccordionTrigger>
+            <AccordionContent className="text-muted-foreground">{f.a}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </Section>
+  );
+}
+
+function Newsletter() {
+  return (
+    <Section>
+      <div className="rounded-2xl border p-6 bg-gradient-to-br from-purple-50 to-white">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <div className="font-semibold">Drop your email for deals & restocks</div>
+            <div className="text-sm text-muted-foreground">We only send the good stuff. Unsubscribe anytime.</div>
+          </div>
+          <div className="flex gap-2 w-full md:w-auto">
+            <Input placeholder="you@example.com" />
+            <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">Notify me</Button>
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function Footer() {
+  const copyDiscord = async () => {
+    try {
+      await navigator.clipboard.writeText(DISCORD_INVITE);
+      alert("Discord invite copied!");
+    } catch {
+      window.open(DISCORD_INVITE, "_blank");
+    }
+  };
+  return (
+    <footer id="contact" className="border-t bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid md:grid-cols-4 gap-8">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-500" />
+              <span className="font-semibold">SevServices</span>
+            </div>
+            <p className="text-sm text-muted-foreground">Digital goods for GTA & R6 since 2024.</p>
+          </div>
+          <div>
+            <div className="font-semibold mb-2">Links</div>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#products" className="hover:text-purple-600">Products</a></li>
+              <li><a href="#faq" className="hover:text-purple-600">FAQ</a></li>
+              <li><a href={SHOP_URL} target="_blank" rel="noreferrer" className="hover:text-purple-600">Checkout</a></li>
+            </ul>
+          </div>
+          <div>
+            <div className="font-semibold mb-2">Policies</div>
+            <ul className="space-y-2 text-sm">
+              <li>Terms of Service</li>
+              <li>Refund Policy</li>
+              <li>Disclaimer</li>
+            </ul>
+          </div>
+          <div>
+            <div className="font-semibold mb-2">Support</div>
+            <div className="flex gap-2">
+              <Button asChild variant="outline">
+                <a href={DISCORD_INVITE} target="_blank" rel="noreferrer" className="flex items-center gap-2"><Headphones className="w-4 h-4"/> Discord</a>
+              </Button>
+              <Button onClick={copyDiscord} variant="secondary" className="flex items-center gap-2"><Copy className="w-4 h-4"/> Copy</Button>
+            </div>
+          </div>
+        </div>
+        <div className="mt-8 text-xs text-muted-foreground">
+          © {new Date().getFullYear()} SevServices — Not affiliated with Rockstar Games or Ubisoft. All trademarks belong to their respective owners. Digital goods delivered electronically.
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export default function SevServicesStore() {
+  return (
+    <div className="min-h-screen bg-white text-slate-900">
+      <Header />
+      <Hero />
+      <Products />
+      <Benefits />
+      <Testimonials />
+      <FAQ />
+      <Newsletter />
+      <Footer />
+    </div>
+  );
+}
