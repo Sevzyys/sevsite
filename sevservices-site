@@ -1,0 +1,5 @@
+npm create vite@latest sevservices-site -- --template react-ts
+cd sevservices-site
+npm i
+npm i framer-motion lucide-react
+# add Tailwind + shadcn if you want (optional)
